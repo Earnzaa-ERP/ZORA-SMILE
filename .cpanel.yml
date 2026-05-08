@@ -11,3 +11,4 @@ deployment:
     - /bin/cp product-toothpaste.html $DEPLOYPATH
     - /bin/cp product-powder.html $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH

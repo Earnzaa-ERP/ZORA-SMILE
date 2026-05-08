@@ -381,10 +381,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---- Active nav link ---- */
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  function normalizePath(p) {
+    if (!p || p === '#') return null;
+    let s = p.replace(/^\/+/, '').replace(/\.html$/i, '').replace(/\/$/, '');
+    if (s === '' || s === 'index') return '/';
+    return '/' + s;
+  }
+  const currentNorm = normalizePath(window.location.pathname);
   document.querySelectorAll('.nav-links a:not(.nav-shop-btn)').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage) link.classList.add('active');
+    if (normalizePath(link.getAttribute('href')) === currentNorm) {
+      link.classList.add('active');
+    }
   });
 
   /* ---- FAQ Accordion ---- */

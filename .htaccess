@@ -1,0 +1,15 @@
+# Pretty URLs: hide .html extensions
+RewriteEngine On
+
+# 1. Redirect any direct .html request to clean URL (301 permanent)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 2. Internally serve the .html file when clean URL is requested
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# Default file for / (home)
+DirectoryIndex index.html
