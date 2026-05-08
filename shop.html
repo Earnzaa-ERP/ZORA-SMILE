@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Zora Smile</title>
+  <meta name="description" content="Shop the full Zora Smile lineup. Whitening strips, pen, toothpaste, charcoal powder, and bundles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="announcement-bar">
+    Free shipping on orders over $50 &nbsp;&middot;&nbsp; New customers save 20% with code <strong>BRIGHT20</strong>
+    <a href="shop.html">Shop now &#8594;</a>
+    <button class="close-bar" aria-label="Close">&times;</button>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <img src="assets/images/teeth_logo_main.png" alt="Zora Smile">
+        <span>Zora Smile</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="shop.html" class="nav-shop-btn">Cart <span class="cart-count">0</span></a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- SHOP GRID -->
+  <section class="section shop-section" style="padding-top: 60px;">
+    <div class="container">
+      <div class="shop-grid" data-stagger>
+
+        <article class="shop-card">
+          <div class="shop-card-image">
+            <span class="product-icon">&#x1F9F0;</span>
+            <span class="product-tag">Bestseller</span>
+          </div>
+          <div class="shop-card-body">
+            <div class="product-rating">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="rating-count">(2,140)</span>
+            </div>
+            <h3><a href="products.html">Advanced Whitening Strips</a></h3>
+            <p class="shop-desc">14 daily treatments. Visible whitening from day three.</p>
+            <div class="shop-price">$34.99 <span class="old-price" style="font-size:1rem;color:var(--muted);text-decoration:line-through;font-weight:400;">$44.99</span></div>
+            <button class="btn btn-primary btn-block" data-add-cart data-product-name="Advanced Whitening Strips" data-product-price="34.99" data-product-old="44.99" data-product-glyph="&#x1F9F0;">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="shop-card">
+          <div class="shop-card-image">
+            <span class="product-icon">&#x1F58A;&#xFE0F;</span>
+            <span class="product-tag">Travel</span>
+          </div>
+          <div class="shop-card-body">
+            <div class="product-rating">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="rating-count">(1,754)</span>
+            </div>
+            <h3><a href="product-pen.html">Precision Whitening Pen</a></h3>
+            <p class="shop-desc">30+ touch-ups. Brush-on whitening you can throw in your bag.</p>
+            <div class="shop-price">$19.99</div>
+            <button class="btn btn-primary btn-block" data-add-cart data-product-name="Precision Whitening Pen" data-product-price="19.99" data-product-glyph="&#x1F58A;&#xFE0F;">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="shop-card">
+          <div class="shop-card-image">
+            <span class="product-icon">&#x1FAA5;</span>
+          </div>
+          <div class="shop-card-body">
+            <div class="product-rating">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="rating-count">(1,210)</span>
+            </div>
+            <h3><a href="product-toothpaste.html">WhiteBoost Toothpaste</a></h3>
+            <p class="shop-desc">Daily whitening. Mint flavor. Three-month tube.</p>
+            <div class="shop-price">$14.99</div>
+            <button class="btn btn-primary btn-block" data-add-cart data-product-name="WhiteBoost Toothpaste" data-product-price="14.99" data-product-glyph="&#x1FAA5;">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="shop-card">
+          <div class="shop-card-image">
+            <span class="product-icon">&#x1F9C2;</span>
+            <span class="product-tag warn">New</span>
+          </div>
+          <div class="shop-card-body">
+            <div class="product-rating">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+              <span class="rating-count">(412)</span>
+            </div>
+            <h3><a href="product-powder.html">Charcoal Whitening Powder</a></h3>
+            <p class="shop-desc">Activated coconut charcoal. ~60 uses per glass jar.</p>
+            <div class="shop-price">$24.99</div>
+            <button class="btn btn-primary btn-block" data-add-cart data-product-name="Charcoal Whitening Powder" data-product-price="24.99" data-product-glyph="&#x1F9C2;">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="shop-card">
+          <div class="shop-card-image" style="background: linear-gradient(160deg, var(--mint-700), var(--mint-900));">
+            <span class="product-icon" style="color: var(--mint-300); opacity: 0.95;">&#x1F381;</span>
+            <span class="product-tag warn">Save 30%</span>
+          </div>
+          <div class="shop-card-body">
+            <div class="product-rating">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="rating-count">(3,402)</span>
+            </div>
+            <h3>The Starter Kit</h3>
+            <p class="shop-desc">Strips + Pen + Toothpaste. Everything you need to start.</p>
+            <div class="shop-price">$54.99 <span class="old-price" style="font-size:1rem;color:var(--muted);text-decoration:line-through;font-weight:400;">$79.97</span></div>
+            <button class="btn btn-primary btn-block" data-add-cart data-product-name="Starter Kit" data-product-price="54.99" data-product-old="79.97" data-product-glyph="&#x1F381;">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="shop-card">
+          <div class="shop-card-image" style="background: linear-gradient(160deg, var(--cream-dark), var(--mint-300));">
+            <span class="product-icon">&#x1F4E6;</span>
+            <span class="product-tag">Subscribe</span>
+          </div>
+          <div class="shop-card-body">
+            <div class="product-rating">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="rating-count">(1,892)</span>
+            </div>
+            <h3>Whitening Subscription</h3>
+            <p class="shop-desc">Monthly delivery. Save 25% on every order. Cancel anytime.</p>
+            <div class="shop-price">From $14.99/mo</div>
+            <button class="btn btn-primary btn-block" data-add-cart data-product-name="Whitening Subscription" data-product-price="14.99" data-product-glyph="&#x1F4E6;">Subscribe Now</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING CARDS (Subscribe vs One-Time) -->
+  <section class="section cream">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 24px;">
+        <span class="section-eyebrow">Best value</span>
+        <h2 class="section-title">Starter Kit, your way.</h2>
+        <p class="section-subtitle center">Same kit. Two ways to save. Subscribe and stack savings on every box.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="pricing-card featured">
+          <span class="popular-badge">Most popular</span>
+          <h3>Subscribe & Save</h3>
+          <div class="price-line">
+            <span class="price-now">$41.24</span>
+            <span class="price-old">$79.97</span>
+          </div>
+          <p class="price-meta">$1.47 per day &middot; ships every 4 weeks</p>
+          <ul>
+            <li><span class="check">&#10003;</span> Save 25% on every order</li>
+            <li><span class="check">&#10003;</span> Free shipping, every time</li>
+            <li><span class="check">&#10003;</span> 30-day money-back guarantee</li>
+            <li><span class="check">&#10003;</span> Cancel or skip anytime</li>
+            <li><span class="check">&#10003;</span> Free gift on your 3rd order</li>
+          </ul>
+          <button class="btn btn-primary btn-block" data-add-cart data-product-name="Starter Kit Subscription" data-product-price="41.24" data-product-old="79.97" data-product-glyph="&#x1F381;">Subscribe Now &#8594;</button>
+        </article>
+
+        <article class="pricing-card">
+          <h3>One-time purchase</h3>
+          <div class="price-line">
+            <span class="price-now">$54.99</span>
+            <span class="price-old">$79.97</span>
+          </div>
+          <p class="price-meta">Single delivery, no subscription</p>
+          <ul>
+            <li><span class="check">&#10003;</span> Save 31% off bundle price</li>
+            <li><span class="check">&#10003;</span> Free shipping over $50</li>
+            <li><span class="check">&#10003;</span> 30-day money-back guarantee</li>
+            <li><span class="x">&#10005;</span> No subscription discount</li>
+            <li><span class="x">&#10005;</span> No free gift</li>
+          </ul>
+          <button class="btn btn-secondary btn-block" data-add-cart data-product-name="Starter Kit" data-product-price="54.99" data-product-old="79.97" data-product-glyph="&#x1F381;">Add to Cart</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST ROW -->
+  <div class="trust-row">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item"><span class="ico">&#x1F69A;</span><div class="txt"><strong>Free shipping</strong><span>On orders $50+</span></div></div>
+        <div class="trust-item"><span class="ico">&#x1F504;</span><div class="txt"><strong>30-day returns</strong><span>No questions asked</span></div></div>
+        <div class="trust-item"><span class="ico">&#x1F1FA;&#x1F1F8;</span><div class="txt"><strong>Made in the USA</strong><span>FDA-registered</span></div></div>
+        <div class="trust-item"><span class="ico">&#x1F4AC;</span><div class="txt"><strong>Real humans</strong><span>support@zorasmile.com</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="section reviews">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 36px;">
+        <span class="section-eyebrow">Customer reviews</span>
+        <h2 class="section-title">Loved by thousands.</h2>
+      </div>
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Subscribed after my first kit. The 25% discount makes it cheaper than my old drugstore brand."</blockquote>
+            <div class="review-author">
+              <div class="review-avatar">LK</div>
+              <div><strong>Lauren K.</strong><span>Subscriber</span></div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"The Starter Kit was the perfect intro. Got the routine down in two weeks."</blockquote>
+            <div class="review-author">
+              <div class="review-avatar">RT</div>
+              <div><strong>Ryan T.</strong><span>Starter Kit</span></div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Free shipping over $50, fast delivery, great packaging. Felt premium from the first email."</blockquote>
+            <div class="review-author">
+              <div class="review-avatar">NM</div>
+              <div><strong>Naomi M.</strong><span>Verified buyer</span></div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Customer service is real humans. Got a reply within an hour. Refilled my subscription on the spot."</blockquote>
+            <div class="review-author">
+              <div class="review-avatar">CH</div>
+              <div><strong>Chris H.</strong><span>Subscriber</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+          <div class="carousel-dots"></div>
+          <button class="carousel-btn next" aria-label="Next">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 48px;">
+        <span class="section-eyebrow">Shop FAQ</span>
+        <h2 class="section-title">Shipping & ordering.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question"><span>How fast does shipping take?</span><span class="toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">US orders ship in 1&ndash;2 business days and arrive in 3&ndash;5 days. International orders take 5&ndash;9 business days.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>What's included in the Starter Kit?</span><span class="toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">One box of Advanced Whitening Strips (14 treatments), one Precision Whitening Pen, and one tube of WhiteBoost Toothpaste. Everything you need to whiten and maintain.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>How does the subscription work?</span><span class="toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Pick your products, choose how often (every 4, 6, or 8 weeks), and we'll ship automatically with 25% off every order. Skip, pause, or cancel anytime from your account.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Can I return an opened product?</span><span class="toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. Our 30-day money-back guarantee covers opened products too. If Zora isn't for you, we want to know &mdash; and we'll refund you regardless.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="signup section-tight">
+    <div class="container">
+      <div class="signup-card">
+        <h2>Save 20% on your first order.</h2>
+        <p>Drop your email below and we'll send your code in seconds.</p>
+        <form class="signup-form">
+          <input type="email" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit">Get 20% Off</button>
+        </form>
+        <p class="signup-fineprint">By signing up, you agree to our Terms and Privacy Policy.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-name">Zora Smile</div>
+          <p>Premium teeth whitening, formulated with care. Visible results, no compromise.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="TikTok">TT</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All products</a>
+          <a href="products.html">Whitening Strips</a>
+          <a href="product-pen.html">Whitening Pen</a>
+          <a href="product-toothpaste.html">Toothpaste</a>
+          <a href="product-powder.html">Charcoal Powder</a>
+          <a href="shop.html">Starter Kit</a>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <a href="about.html">Our story</a>
+          <a href="#">The science</a>
+          <a href="#">How it works</a>
+          <a href="#">Reviews</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="contact.html">Contact us</a>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+          <a href="#">Track order</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#">Refer a friend</a>
+          <a href="#">Affiliates</a>
+          <a href="#">Press</a>
+          <a href="#">Careers</a>
+          <a href="#">Wholesale</a>
+        </div>
+      </div>
+      <p class="footer-disclaimer">*These statements have not been evaluated by the FDA. Zora Smile products are not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary.</p>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Zora Smile. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="mobile-cta-bar" href="shop.html">
+    <div class="cta-info">
+      <strong>Free shipping over $50</strong>
+      <span>30-day money-back guarantee</span>
+    </div>
+    <span class="btn btn-primary mobile-cta-btn">Shop now &#8594;</span>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
