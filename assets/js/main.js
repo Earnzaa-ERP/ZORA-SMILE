@@ -244,6 +244,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.closest('.cart-close') || e.target.classList.contains('cart-overlay')) {
       closeCart();
     }
+    if (e.target.closest('.cart-checkout')) {
+      if (getCartCount() > 0) window.location.href = '/checkout';
+    }
     const incrEl = e.target.closest('[data-cart-incr]');
     const decrEl = e.target.closest('[data-cart-decr]');
     const removeEl = e.target.closest('[data-cart-remove]');
@@ -277,6 +280,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       openCart();
     });
+  });
+
+  /* ---- Cart drawer "Secure Checkout" button goes to checkout page ---- */
+  document.addEventListener('click', (e) => {
+    const ckBtn = e.target.closest('.cart-checkout');
+    if (ckBtn) {
+      if (cart.length === 0) return;
+      window.location.href = '/checkout';
+    }
   });
   /* ---- Mobile sticky bar opens drawer when cart has items ---- */
   if (mobileCta) {
@@ -755,6 +767,228 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  /* ---- Checkout page ---- */
+  const checkoutForm = document.getElementById('checkoutForm');
+  if (checkoutForm) {
+    const grid = document.getElementById('checkoutGrid');
+    const emptyState = document.getElementById('checkoutEmpty');
+    const successState = document.getElementById('checkoutSuccess');
+    const itemsEl = document.getElementById('orderItems');
+    const SHIPPING_FLAT = 5.99;
+    let selectedPayment = 'cod';
+
+    function renderCheckout() {
+      if (cart.length === 0) {
+        if (grid) grid.style.display = 'none';
+        if (emptyState) emptyState.style.display = 'block';
+        return;
+      }
+
+      // Line items
+      if (itemsEl) {
+        itemsEl.innerHTML = cart.map(item => {
+          const line = (item.price * item.qty).toFixed(2);
+          return `
+            <div class="order-item">
+              <div class="order-item-thumb">
+                <span class="glyph">${item.glyph || '✨'}</span>
+                <span class="qty-badge">${item.qty}</span>
+              </div>
+              <div class="order-item-info">
+                <strong>${item.name}</strong>
+                <span>$${item.price.toFixed(2)} each</span>
+              </div>
+              <span class="order-item-price">$${line}</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const subtotal = getCartTotal();
+      const freeShip = subtotal >= FREE_SHIP_THRESHOLD;
+      const shipping = freeShip ? 0 : SHIPPING_FLAT;
+      const discount = (selectedPayment === 'prepay') ? +(subtotal * 0.05).toFixed(2) : 0;
+      const total = +(subtotal + shipping - discount).toFixed(2);
+
+      const set = (sel, val) => { const el = document.querySelector(sel); if (el) el.textContent = val; };
+      set('[data-order-count]', getCartCount());
+      set('[data-order-subtotal]', `$${subtotal.toFixed(2)}`);
+      set('[data-order-shipping]', freeShip ? 'Free' : `$${shipping.toFixed(2)}`);
+      set('[data-place-total]', `$${total.toFixed(2)}`);
+      set('[data-order-total]', `$${total.toFixed(2)}`);
+
+      const discountRow = document.querySelector('[data-discount-row]');
+      const discountVal = document.querySelector('[data-order-discount]');
+      if (discount > 0) {
+        if (discountRow) discountRow.style.display = 'flex';
+        if (discountVal) discountVal.textContent = `−$${discount.toFixed(2)}`;
+      } else {
+        if (discountRow) discountRow.style.display = 'none';
+      }
+    }
+    renderCheckout();
+
+    // Payment selection
+    document.querySelectorAll('.payment-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        if (opt.classList.contains('disabled')) {
+          e.preventDefault();
+          return;
+        }
+        document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        const radio = opt.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+        selectedPayment = opt.getAttribute('data-payment') || 'cod';
+        renderCheckout();
+      });
+    });
+
+    // Submit
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Native required-field check
+      const required = checkoutForm.querySelectorAll('[required]');
+      let firstInvalid = null;
+      required.forEach(f => {
+        if (!f.value.trim()) {
+          f.style.borderColor = 'var(--warn)';
+          if (!firstInvalid) firstInvalid = f;
+        } else {
+          f.style.borderColor = '';
+        }
+      });
+      if (firstInvalid) {
+        firstInvalid.focus();
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Generate order ID + show success
+      const orderId = 'ZS-' + Date.now().toString(36).toUpperCase().slice(-6);
+      const idEl = document.getElementById('orderId');
+      if (idEl) idEl.textContent = orderId;
+
+      if (grid) grid.style.display = 'none';
+      if (successState) successState.style.display = 'block';
+
+      // Clear cart
+      cart.length = 0;
+      saveCart();
+      document.querySelectorAll('.cart-count').forEach(el => el.textContent = '0');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ---- Checkout page ---- */
+  const checkoutForm = document.getElementById('checkoutForm');
+  const checkoutGrid = document.getElementById('checkoutGrid');
+  const checkoutEmpty = document.getElementById('checkoutEmpty');
+  const checkoutSuccess = document.getElementById('checkoutSuccess');
+
+  if (checkoutForm && checkoutGrid) {
+    const CK_SHIP_THRESHOLD = 50;
+    const CK_SHIP_COST = 5.99;
+    const PREPAY_DISCOUNT = 0.05;
+
+    function getCkPayment() {
+      const sel = document.querySelector('.payment-option.selected');
+      return sel ? sel.getAttribute('data-payment') : 'cod';
+    }
+
+    function renderCheckout() {
+      if (cart.length === 0) {
+        checkoutGrid.style.display = 'none';
+        if (checkoutEmpty) checkoutEmpty.style.display = 'block';
+        return;
+      }
+
+      const itemsEl = document.getElementById('orderItems');
+      if (itemsEl) {
+        itemsEl.innerHTML = cart.map(item => `
+          <div class="order-item">
+            <div class="order-item-thumb">
+              <span class="glyph">${item.glyph || '✨'}</span>
+              <span class="qty-badge">${item.qty}</span>
+            </div>
+            <div class="order-item-info">
+              <strong>${item.name}</strong>
+              <span>$${item.price.toFixed(2)} each</span>
+            </div>
+            <span class="order-item-price">$${(item.price * item.qty).toFixed(2)}</span>
+          </div>
+        `).join('');
+      }
+
+      const countEl = document.querySelector('[data-order-count]');
+      if (countEl) countEl.textContent = getCartCount();
+
+      const subtotal = getCartTotal();
+      const shipping = subtotal >= CK_SHIP_THRESHOLD ? 0 : CK_SHIP_COST;
+      const payment = getCkPayment();
+      const discount = payment === 'prepay' ? subtotal * PREPAY_DISCOUNT : 0;
+      const total = Math.max(0, subtotal + shipping - discount);
+
+      const subEl = document.querySelector('[data-order-subtotal]');
+      const shipEl = document.querySelector('[data-order-shipping]');
+      const discRow = document.querySelector('[data-discount-row]');
+      const discEl = document.querySelector('[data-order-discount]');
+      const totalEl = document.querySelector('[data-order-total]');
+      const placeEl = document.querySelector('[data-place-total]');
+      if (subEl) subEl.textContent = `$${subtotal.toFixed(2)}`;
+      if (shipEl) shipEl.textContent = shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`;
+      if (discRow) {
+        if (discount > 0) {
+          discRow.style.display = 'flex';
+          if (discEl) discEl.textContent = `−$${discount.toFixed(2)}`;
+        } else {
+          discRow.style.display = 'none';
+        }
+      }
+      if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+      if (placeEl) placeEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Payment option selection (skip disabled)
+    document.querySelectorAll('.payment-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        if (opt.classList.contains('disabled')) {
+          e.preventDefault();
+          return;
+        }
+        document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        const radio = opt.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+        renderCheckout();
+      });
+    });
+
+    // Form submit (mock — no real backend yet)
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Generate a friendly-looking order ID
+      const orderId = 'ZS-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      const orderIdEl = document.getElementById('orderId');
+      if (orderIdEl) orderIdEl.textContent = orderId;
+
+      checkoutGrid.style.display = 'none';
+      if (checkoutSuccess) checkoutSuccess.style.display = 'block';
+
+      // Clear cart
+      cart = [];
+      saveCart();
+      document.querySelectorAll('.cart-count').forEach(el => el.textContent = '0');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    renderCheckout();
+  }
 
   /* ---- Feature accordion (Why Zora) ---- */
   document.querySelectorAll('.feature-item').forEach(item => {

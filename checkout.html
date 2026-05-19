@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Zora Smile</title>
+  <meta name="description" content="Complete your Zora Smile order. Cash on delivery available. Free shipping on orders over $50.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="announcement-bar">
+    Free shipping on orders over $50 &nbsp;&middot;&nbsp; New customers save 20% with code <strong>BRIGHT20</strong>
+    <a href="/shop">Shop now &#8594;</a>
+    <button class="close-bar" aria-label="Close">&times;</button>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="navbar-brand">
+        <img src="assets/images/teeth_logo_main.png" alt="Zora Smile">
+        <span>Zora Smile</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/products">Products</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
+        <a href="/shop" class="nav-shop-btn">Cart <span class="cart-count">0</span></a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="checkout-section">
+    <div class="container">
+
+      <!-- Empty cart state -->
+      <div class="checkout-empty" id="checkoutEmpty" style="display: none;">
+        <div class="glyph">&#x1F6D2;</div>
+        <h2>Your cart is empty</h2>
+        <p>Add a product to your cart, then come back here to check out.</p>
+        <a href="/shop" class="btn btn-primary">Browse the lineup &#8594;</a>
+      </div>
+
+      <!-- Success state -->
+      <div class="checkout-success" id="checkoutSuccess" style="display: none;">
+        <div class="success-icon">&#10003;</div>
+        <h1>Order placed!</h1>
+        <p>Thank you for your order. We'll send a confirmation email shortly with tracking info.</p>
+        <div class="order-id" id="orderId">ZS-000000</div>
+        <p style="font-size: 0.92rem;">Since you chose <strong>Cash on Delivery</strong>, please have the exact amount ready when our courier arrives. Most orders arrive within 3&ndash;5 business days.</p>
+        <div style="margin-top: 28px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <a href="/" class="btn btn-secondary">Back to home</a>
+          <a href="/shop" class="btn btn-primary">Keep shopping &#8594;</a>
+        </div>
+      </div>
+
+      <!-- Main checkout grid -->
+      <div class="checkout-grid" id="checkoutGrid">
+
+        <!-- LEFT: Form -->
+        <div class="checkout-form">
+          <h1>Checkout</h1>
+          <p class="checkout-lead">Free shipping on orders over $50 &middot; 30-day money-back guarantee &middot; secure ordering.</p>
+
+          <form id="checkoutForm" novalidate>
+
+            <div class="form-section">
+              <h2><span class="step-num">1</span> Contact</h2>
+              <div class="field">
+                <label for="ck-email">Email</label>
+                <input type="email" id="ck-email" placeholder="you@example.com" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="ck-phone">Phone number</label>
+                <input type="tel" id="ck-phone" placeholder="+1 (555) 123-4567" required autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h2><span class="step-num">2</span> Delivery address</h2>
+              <div class="field">
+                <label for="ck-name">Full name</label>
+                <input type="text" id="ck-name" placeholder="Jane Doe" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="ck-address1">Address</label>
+                <input type="text" id="ck-address1" placeholder="Street address" required autocomplete="address-line1">
+              </div>
+              <div class="field">
+                <label for="ck-address2">Apartment, suite, etc. <span style="font-weight: 400; color: var(--muted);">(optional)</span></label>
+                <input type="text" id="ck-address2" placeholder="Apt 4B" autocomplete="address-line2">
+              </div>
+              <div class="field-row-3">
+                <div class="field">
+                  <label for="ck-city">City</label>
+                  <input type="text" id="ck-city" required autocomplete="address-level2">
+                </div>
+                <div class="field">
+                  <label for="ck-state">State / Region</label>
+                  <input type="text" id="ck-state" required autocomplete="address-level1">
+                </div>
+                <div class="field">
+                  <label for="ck-zip">Postal code</label>
+                  <input type="text" id="ck-zip" required autocomplete="postal-code">
+                </div>
+              </div>
+              <div class="field">
+                <label for="ck-country">Country</label>
+                <select id="ck-country" required autocomplete="country-name">
+                  <option value="">Choose country</option>
+                  <option value="NG" selected>Nigeria</option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="AU">Australia</option>
+                  <option value="DE">Germany</option>
+                  <option value="FR">France</option>
+                  <option value="ES">Spain</option>
+                  <option value="IT">Italy</option>
+                  <option value="ZA">South Africa</option>
+                  <option value="GH">Ghana</option>
+                  <option value="KE">Kenya</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ck-notes">Delivery notes <span style="font-weight: 400; color: var(--muted);">(optional)</span></label>
+                <textarea id="ck-notes" placeholder="Leave at front door, ring the bell, etc."></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h2><span class="step-num">3</span> Payment method</h2>
+              <div class="payment-options">
+                <label class="payment-option selected" data-payment="cod">
+                  <input type="radio" name="payment" value="cod" checked>
+                  <div class="payment-content">
+                    <div class="payment-header">
+                      <strong>Cash on Delivery</strong>
+                      <span class="payment-badge">No surcharge</span>
+                    </div>
+                    <p>Pay in cash when your order arrives at your door. Have the exact amount ready &mdash; our couriers don't always carry change.</p>
+                  </div>
+                </label>
+
+                <label class="payment-option disabled" data-payment="prepay">
+                  <input type="radio" name="payment" value="prepay" disabled>
+                  <div class="payment-content">
+                    <div class="payment-header">
+                      <strong>Pay before delivery</strong>
+                      <span class="payment-badge save">Save 5%</span>
+                      <span class="payment-badge soon">Coming soon</span>
+                    </div>
+                    <p>Cards, bank transfer, and digital wallets. Skip the cash, save 5% on every order. We're finalizing this option &mdash; check back soon.</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary place-order-btn">
+              Place Order &mdash; <span data-place-total>$0.00</span>
+            </button>
+            <p class="legal-fine">
+              By placing this order, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+            </p>
+          </form>
+        </div>
+
+        <!-- RIGHT: Order summary -->
+        <aside class="checkout-summary">
+          <h3>Your order (<span data-order-count>0</span>)</h3>
+          <div class="order-items" id="orderItems"></div>
+
+          <div class="order-totals">
+            <div class="row"><span>Subtotal</span><strong data-order-subtotal>$0.00</strong></div>
+            <div class="row"><span>Shipping</span><strong data-order-shipping>Free</strong></div>
+            <div class="row discount" data-discount-row style="display: none;"><span>Pre-pay discount (5%)</span><strong data-order-discount>&minus;$0.00</strong></div>
+            <div class="row total"><span>Total</span><strong data-order-total>$0.00</strong></div>
+          </div>
+
+          <div class="order-trust">
+            <div><span class="ico">&#x1F512;</span>Secure ordering</div>
+            <div><span class="ico">&#x21BB;</span>30-day returns</div>
+            <div><span class="ico">&#9733;</span>12K+ reviews</div>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-name">Zora Smile</div>
+          <p>Premium teeth whitening, formulated with care. Visible results, no compromise.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="TikTok">TT</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="/shop">All products</a>
+          <a href="/products">Whitening Strips</a>
+          <a href="/product-pen">Whitening Pen</a>
+          <a href="/product-toothpaste">Toothpaste</a>
+          <a href="/product-powder">Charcoal Powder</a>
+          <a href="/shop">Starter Kit</a>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <a href="/about">Our story</a>
+          <a href="#">The science</a>
+          <a href="#">How it works</a>
+          <a href="#">Reviews</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="/contact">Contact us</a>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+          <a href="#">Track order</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#">Refer a friend</a>
+          <a href="#">Affiliates</a>
+          <a href="#">Press</a>
+          <a href="#">Careers</a>
+          <a href="#">Wholesale</a>
+        </div>
+      </div>
+      <p class="footer-disclaimer">*These statements have not been evaluated by the FDA. Zora Smile products are not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary.</p>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Zora Smile. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

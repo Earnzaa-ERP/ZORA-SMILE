@@ -10,5 +10,6 @@ deployment:
     - /bin/cp product-pen.html $DEPLOYPATH
     - /bin/cp product-toothpaste.html $DEPLOYPATH
     - /bin/cp product-powder.html $DEPLOYPATH
+    - /bin/cp checkout.html $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
