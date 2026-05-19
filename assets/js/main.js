@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="glyph">&#x1F6D2;</div>
           <h4>Your cart is empty</h4>
           <p>Find your bright new routine.</p>
-          <a href="shop.html" class="btn btn-primary">Shop now &#8594;</a>
+          <a href="/shop" class="btn btn-primary">Shop now &#8594;</a>
         </div>
       `;
     } else {
